@@ -16,13 +16,14 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Papa Bolinhas")
 
 #Carrega a imagem de fundo
-imagem = pygame.image.load("img/imagem_fundo.png")
+imagem = pygame.image.load("C:\\Users\\Felipe\\OneDrive\\Área de Trabalho\\ESTUDOS\FACULDADE\\4Quarto semestre\\JOGOS DIGITAIS\\A7\\jolai2018\\Papa bolinhas\\img\\imagem_fundo.png")
 
 # Define as cores em RGB
 BLACK  = (0, 0, 0)
 WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
 RED = (255, 0, 0)
+PINK = (255, 192, 203)
 
 # Declarando a fonte do placar e variável contadora
 font = pygame.font.SysFont('sans',40)
@@ -84,25 +85,25 @@ while True:
     screen.blit(imagem, (0, 0))
 
     # Desenha um circulo branco na tela
-    pygame.draw.circle(screen, WHITE, posicaoPapaBolinhas, 20)
+    pygame.draw.circle(screen, YELLOW, posicaoPapaBolinhas, 20)
 
     # Aqui é setado a posição inicial da bola vermelha
     if criar == True:
-        X_vermelho = randint(40,760)
-        Y_vermelho = 20
+        X_vermelho = 0
+        Y_vermelho = randint (40, 560)
         criar = False
 
     # Velocidade de queda do círculo Vermelho
-    Y_vermelho += 5
+    X_vermelho += 5
 
     # Valores da bola vermelha é atribuido 
     posicaoBolasVermelhas = [X_vermelho,Y_vermelho]
    
     # Desenha o círculo vermelho
-    pygame.draw.circle(screen, RED, posicaoBolasVermelhas, 10)
+    pygame.draw.circle(screen, PINK, posicaoBolasVermelhas, 10)
 
     # Se o círculo vermelho ultapassar a  tela ela é reiniciada
-    if Y_vermelho > 600:
+    if X_vermelho > 800:
         criar = True
 
     # Se o papa bolinhas encostar no círculo vermelho o círculo vermelho é reiniciado
@@ -111,11 +112,11 @@ while True:
     if (posicaoPapaBolinhas[1] + 20 >= Y_vermelho - 10  and posicaoPapaBolinhas[1] - 20 <= Y_vermelho + 10) and (posicaoPapaBolinhas[0] +20  >= X_vermelho - 10 and posicaoPapaBolinhas[0] - 20 <= X_vermelho + 20): 
         criar = True
         placar = placar+1
-        pygame.mixer.music.load('som/catch.mp3')
+        pygame.mixer.music.load("C:\\Users\\Felipe\\OneDrive\\Área de Trabalho\\ESTUDOS\\FACULDADE\\4Quarto semestre\\JOGOS DIGITAIS\\A7\\jolai2018\\Papa bolinhas\\som\\catch.mp3")
         pygame.mixer.music.play(0)
 
     # renderizando as fontes do placar na tela
-    score1 = font.render('Placar '+str(placar), True, (WHITE))
+    score1 = font.render('Placar '+str(placar), True, (YELLOW))
     screen.blit(score1, (600, 50))
 
     #rendrizando as fontes do cronometro na tela do usuario
@@ -130,10 +131,10 @@ while True:
 
 #final de jogo
 #Limpando a tela do jogo
-frame = pygame.draw.rect(screen, (WHITE), Rect((0, 0), (800, 600)))
+frame = pygame.draw.rect(screen, (YELLOW), Rect((0, 0), (800, 600)))
 
 
-textofinal = font.render('Fim de Jogo - Placar final: ' + str(placar), True, (RED))
+textofinal = font.render('Fim de Jogo - Placar final: ' + str(placar), True, (PINK))
 size = font.size(str(textofinal))
 screen.blit(textofinal, (size[0]/2., size[1]/2.))
 
